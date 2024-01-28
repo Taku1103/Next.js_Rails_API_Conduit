@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Conduitとは
+Conduitは Medium.com のクローンの記事投稿サイトです。
+その似た機能のサイトをRailsとNext.jsで実装します。
 
-## Getting Started
+# 使用技術
+- バックエンド
+  - Ruby 3.2.2
+  - Rails 7.1.2
+- フロントエンド
+  - React 18.2.0
+  - Next.js 14.1.0
+- DB
+  - sqlite
+# 実行方法
+Rails側で
+`rails server -p 3001`で
+APPサーバーをlocalhost:3001
+で立てる。
+[Railsは別リポジトリ参照](https://github.com/Taku1103/API_Realworld_Quest)
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+next.js側で
+`npm run dev`
+でを実行しWebサーバーをlocalhost:3000で立てる。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# 実装したもの
+* articles(投稿記事)
+  * 作成/一覧表示/詳細表示/更新/削除 のCRUD処理
+  * usersとのリレーション(対一)
+* users
+  * 登録 処理
+  * secureなパスワード
+  * articlesとのリレーション(対多)
+* 認証
+  * セッションストレージを用いいたuserのログイン/ログアウト処理
+* その他
+  * ヘッダーの ログイン時で表示切替
+  * セッションストレージを用いたログインユーザー情報の描画
+  * articlesとusersテーブル結合して記事投稿者のusernameを表示
