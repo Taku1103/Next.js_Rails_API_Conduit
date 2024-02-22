@@ -30,13 +30,20 @@ const login = () => {
     // console.log("Email:", email);
     // console.log("Password:", password);
     // console.log("res_data:", data);
-    // トークンとユーザー情報をsessionStorageに保存
-    let storage = sessionStorage;
 
-    // storage.setItem("user", data.user);
-    storage.setItem("token", data.token);
-    storage.setItem("user_id", data.user.id);
-    storage.setItem("username", data.user.username);
+
+    // // トークンとユーザー情報をsessionStorageに保存
+    // let storage = sessionStorage;
+
+    // // storage.setItem("user", data.user);
+    // storage.setItem("token", data.token);
+    // storage.setItem("user_id", data.user.id);
+    // storage.setItem("username", data.user.username);
+
+    // トークンとユーザー情報をcookieに保存
+    document.cookie = `token=${data.token}; path=/`;
+    document.cookie = `user_id=${data.user.id}; path=/`;
+    document.cookie = `username=${data.user.username}; path=/`;
 
     // console.log(`${storage["username"]}`);
 
