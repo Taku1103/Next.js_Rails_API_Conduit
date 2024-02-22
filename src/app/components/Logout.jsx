@@ -16,7 +16,9 @@ const Logout = ({}) => {
       method: "DELETE",
     });
 
-    sessionStorage.clear();
+    document.cookie = "token=; path=/";
+    document.cookie = "user_id=; path=/";
+    document.cookie = "username=; path=/";
 
     router.push("/");
     router.refresh();
