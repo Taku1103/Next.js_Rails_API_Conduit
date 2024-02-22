@@ -3,9 +3,9 @@ import Link from "next/link";
 import ArticleList from "./components/ArticleList";
 
 export default async function Home() {
-  const localhost = "http://localhost:3001";
+  const URL = "https://tk-22.net";
 
-  const res = await fetch(`${localhost}/api/articles`, { cache: "no-store" });
+  const res = await fetch(`${URL}/api/articles`, { cache: "no-store" });
   const data = await res.json();
   console.log(data);
   const articlesData = data.articles;
@@ -36,3 +36,4 @@ export default async function Home() {
     </main>
   );
 }
+

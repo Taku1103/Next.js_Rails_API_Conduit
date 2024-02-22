@@ -10,9 +10,9 @@ const DeleteButton = ({ deleteArticleId }) => {
     console.log("deleteボタンおされ");
     e.preventDefault();
 
-    const localhost = "http://localhost:3001";
+    const URL = "https://tk-22.net";
 
-    await fetch(`${localhost}/api/articles/${deleteArticleId}`, {
+    await fetch(`${URL}/api/articles/${deleteArticleId}`, {
       method: "DELETE",
     });
 

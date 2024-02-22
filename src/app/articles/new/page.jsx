@@ -10,15 +10,15 @@ const createArticle = () => {
   const [description, setDescription] = useState("");
   const [body, setBody] = useState("");
 
-  const user_id = sessionStorage.user_id;
+  const user_id = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
   const handleCreateArticle = async (e) => {
     console.log("articleクリエイトボタンおされ");
     e.preventDefault();
 
-    const localhost = "http://localhost:3001";
+    const URL = "https://tk-22.net";
 
-    await fetch(`${localhost}/api/articles`, {
+    await fetch(`${URL}/api/articles`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -83,3 +83,4 @@ const createArticle = () => {
 };
 
 export default createArticle;
+

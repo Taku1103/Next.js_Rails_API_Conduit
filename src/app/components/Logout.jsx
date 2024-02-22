@@ -10,9 +10,9 @@ const Logout = ({}) => {
     console.log("logoutボタンおされ");
     e.preventDefault();
 
-    const localhost = "http://localhost:3001";
+    const URL = "https://tk-22.net";
 
-    await fetch(`${localhost}/api/logout`, {
+    await fetch(`${URL}/api/logout`, {
       method: "DELETE",
     });
 
