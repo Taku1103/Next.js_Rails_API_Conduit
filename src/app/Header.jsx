@@ -3,10 +3,10 @@
 import React from "react";
 import Link from "next/link";
 import Logout from "./components/Logout";
+import Cookie from 'js-cookie';
 
 const Header = () => {
-  let storage = document.cookie;
-  let username = storage.username;
+  let username = Cookie.get('username');
   return (
     <div className=" bg-gray-900">
       <header>

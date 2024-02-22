@@ -1,22 +1,34 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React, { useState, useEffect } from "react";
 
 const createArticle = () => {
+  const [routerReady, setRouterReady] = useState(false);
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
+  const { query } = router;
 
-  const [title, setTitle] = useState(searchParams.get("title"));
-  const [description, setDescription] = useState(
-    searchParams.get("description")
-  );
-  const [body, setBody] = useState(searchParams.get("body"));
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [body, setBody] = useState("");
 
-  // console.log(router.query);
-  // console.log("router.query");
+  useEffect(() => {
+    const handleRouteChange = () => {
+      if (router.isReady) {
+        setTitle(query.title || "");
+        setDescription(query.description || "");
+        setBody(query.body || "");
+        setRouterReady(true);
+      }
+    };
+
+    router.events.on('routeChangeComplete', handleRouteChange);
+    handleRouteChange(); // 初期ロード時にも実行
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router, query.title, query.description, query.body]);
 
   const handleCreateArticle = async (e) => {
     console.log("updateボタンおされ");
@@ -24,7 +36,7 @@ const createArticle = () => {
 
     const URL = "https://tk-22.net";
 
-    await fetch(`${URL}/api/articles/${id}`, {
+    await fetch(`${URL}/api/articles/${query.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -33,8 +45,9 @@ const createArticle = () => {
     });
 
     router.push("/");
-    router.refresh();
   };
+
+  if (!routerReady) return <div>Loading...</div>;
 
   return (
     <div>
@@ -42,9 +55,6 @@ const createArticle = () => {
         <div className="container page">
           <div className="row">
             <div className="col-md-10 offset-md-1 col-xs-12">
-              {/* <ul className="error-messages">
-                <li>That title is required</li>
-              </ul> */}
               <form onSubmit={handleCreateArticle}>
                 <fieldset>
                   <fieldset className="form-group">
@@ -91,4 +101,5 @@ const createArticle = () => {
 };
 
 export default createArticle;
+
 
