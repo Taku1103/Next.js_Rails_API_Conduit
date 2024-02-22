@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import Cookie from "js-cookie";
 
 const login = () => {
   const router = useRouter();
@@ -41,9 +42,9 @@ const login = () => {
     // storage.setItem("username", data.user.username);
 
     // トークンとユーザー情報をcookieに保存
-    document.cookie = `token=${data.token}; path=/`;
-    document.cookie = `user_id=${data.user.id}; path=/`;
-    document.cookie = `username=${data.user.username}; path=/`;
+    Cookie.set('token', data.token, { path: '/' });
+    Cookie.set('user_id', data.user.id, { path: '/' });
+    Cookie.set('username', data.user.username, { path: '/' });
 
     // console.log(`${storage["username"]}`);
 

@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
+import Cookie from 'js-cookie';
 
 const Logout = ({}) => {
   const router = useRouter();
@@ -16,9 +17,9 @@ const Logout = ({}) => {
       method: "DELETE",
     });
 
-    document.cookie = "token=; path=/";
-    document.cookie = "user_id=; path=/";
-    document.cookie = "username=; path=/";
+    Cookie.remove('token');
+    Cookie.remove('user_id');
+    Cookie.remove('username');
 
     router.push("/");
     router.refresh();
