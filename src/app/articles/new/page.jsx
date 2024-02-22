@@ -10,7 +10,8 @@ const createArticle = () => {
   const [description, setDescription] = useState("");
   const [body, setBody] = useState("");
 
-  const user_id = sessionStorage.user_id;
+  // const user_id = sessionStorage.user_id;
+  const user_id = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
   const handleCreateArticle = async (e) => {
     console.log("articleクリエイトボタンおされ");

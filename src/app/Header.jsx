@@ -5,7 +5,7 @@ import Link from "next/link";
 import Logout from "./components/Logout";
 
 const Header = () => {
-  let storage = sessionStorage;
+  let storage = document.cookie;
   let username = storage.username;
   return (
     <div className=" bg-gray-900">
