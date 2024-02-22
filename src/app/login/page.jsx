@@ -14,9 +14,9 @@ const login = () => {
     console.log("loginボタンおされ");
     e.preventDefault();
 
-    const localhost = "http://localhost:3001";
+    const URL = "https://tk-22.net";
 
-    const res = await fetch(`${localhost}/api/login`, {
+    const res = await fetch(`${URL}/api/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

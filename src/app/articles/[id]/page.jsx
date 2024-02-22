@@ -3,9 +3,9 @@ import Link from "next/link";
 import DeleteButton from "@/app/components/DeleteButton";
 
 const showArticle = async ({ params }) => {
-  const localhost = "http://localhost:3001";
+  const URL = "https://tk-22.net";
 
-  const res = await fetch(`${localhost}/api/articles/${params.id}`, {
+  const res = await fetch(`${URL}/api/articles/${params.id}`, {
     cache: "no-store",
   });
   const data = await res.json();

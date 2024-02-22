@@ -22,9 +22,9 @@ const createArticle = () => {
     console.log("updateボタンおされ");
     e.preventDefault();
 
-    const localhost = "http://localhost:3001";
+    const URL = "https://tk-22.net";
 
-    await fetch(`${localhost}/api/articles/${id}`, {
+    await fetch(`${URL}/api/articles/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -91,3 +91,4 @@ const createArticle = () => {
 };
 
 export default createArticle;
+

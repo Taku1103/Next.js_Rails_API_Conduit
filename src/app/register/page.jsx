@@ -14,9 +14,9 @@ const register = () => {
     console.log("userクリエイトボタンおされ");
     e.preventDefault();
 
-    const localhost = "http://localhost:3001";
+    const URL = "https://tk-22.net";
 
-    await fetch(`${localhost}/api/users`, {
+    await fetch(`${URL}/api/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
