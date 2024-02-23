@@ -1,12 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Logout from "./components/Logout";
 import Cookie from 'js-cookie';
 
 const Header = () => {
-  let username = Cookie.get('username');
+  const [username, setUsername] = useState(null);
+
+  useEffect(() => {
+    const usernameFromCookie = Cookie.get('username');
+    if (usernameFromCookie) {
+      setUsername(usernameFromCookie);
+    }
+  }, []);
+
   return (
     <div className=" bg-gray-900">
       <header>

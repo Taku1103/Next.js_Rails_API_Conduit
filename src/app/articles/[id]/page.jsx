@@ -36,7 +36,7 @@ const showArticle = async ({ params }) => {
               </div>
               &nbsp;&nbsp;
               <Link
-                href={{ pathname: "/articles/edit", query: articleData }}
+                href={{ pathname: "/articles/edit", query: articleData  }}
                 className="btn btn-sm btn-outline-secondary"
               >
                 <i className="ion-edit"></i> Edit Article
