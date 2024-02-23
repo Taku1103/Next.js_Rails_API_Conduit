@@ -3,6 +3,10 @@
 Conduit は Medium.com のクローンの記事投稿サイトです。
 その似た機能のサイトを Rails と Next.js で実装します。
 
+# デプロイ先
+https://vercel.com/taku1103s-projects/next-js-rails-api-conduit
+Verselを使っています
+
 # 使用技術
 
 - バックエンド
@@ -14,7 +18,7 @@ Conduit は Medium.com のクローンの記事投稿サイトです。
 - DB
   - sqlite
 
-# 実行方法
+# 実行方法(現在デプロイ中です)
 
 Rails 側で
 `rails server -p 3001`
