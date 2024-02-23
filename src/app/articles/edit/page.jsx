@@ -1,42 +1,39 @@
 "use client";
 
-import { useRouter } from "next/router";
-import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import React, { useState, Suspense } from "react";
 
-const createArticle = () => {
-  const [routerReady, setRouterReady] = useState(false);
+
+const EditArticlePage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <EditArticle />
+    </Suspense>
+  );
+};
+
+const EditArticle = () => {
   const router = useRouter();
-  const { query } = router;
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [body, setBody] = useState("");
+  const [title, setTitle] = useState(searchParams.get("title"));
+  const [description, setDescription] = useState(
+    searchParams.get("description")
+  );
+  const [body, setBody] = useState(searchParams.get("body"));
 
-  useEffect(() => {
-    const handleRouteChange = () => {
-      if (router.isReady) {
-        setTitle(query.title || "");
-        setDescription(query.description || "");
-        setBody(query.body || "");
-        setRouterReady(true);
-      }
-    };
-
-    router.events.on('routeChangeComplete', handleRouteChange);
-    handleRouteChange(); // 初期ロード時にも実行
-
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router, query.title, query.description, query.body]);
+  // console.log(router.query);
+  // console.log("router.query");
 
   const handleCreateArticle = async (e) => {
     console.log("updateボタンおされ");
     e.preventDefault();
 
-    const URL = "https://tk-22.net";
+    const localhost = "https://tk-22.net";
 
-    await fetch(`${URL}/api/articles/${query.id}`, {
+    await fetch(`${localhost}/api/articles/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -45,9 +42,8 @@ const createArticle = () => {
     });
 
     router.push("/");
+    router.refresh();
   };
-
-  if (!routerReady) return <div>Loading...</div>;
 
   return (
     <div>
@@ -55,6 +51,9 @@ const createArticle = () => {
         <div className="container page">
           <div className="row">
             <div className="col-md-10 offset-md-1 col-xs-12">
+              {/* <ul className="error-messages">
+                <li>That title is required</li>
+              </ul> */}
               <form onSubmit={handleCreateArticle}>
                 <fieldset>
                   <fieldset className="form-group">
@@ -100,6 +99,4 @@ const createArticle = () => {
   );
 };
 
-export default createArticle;
-
-
+export default EditArticlePage;
