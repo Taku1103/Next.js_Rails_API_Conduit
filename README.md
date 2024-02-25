@@ -7,6 +7,9 @@ Conduit は Medium.com のクローンの記事投稿サイトです。
 https://next-js-rails-api-conduit.vercel.app/
 Verselを使っています
 
+# アーキテクチャ図
+![アーキテクチャ図](AWS_conduit_infra.svg)
+
 # 使用技術
 
 - バックエンド
